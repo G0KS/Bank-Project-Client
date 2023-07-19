@@ -1,0 +1,247 @@
+<nav class="navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/user/dashboard">
+      <i class="fa-solid fa-money-bill-1-wave fa-2xl"></i>
+      Piggy Bank
+    </a>
+    <div class="dropdown">
+      <button
+        class="btn dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <i class="fa-solid fa-gear"></i> Account Settings
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <a class="dropdown-item" data-bs-toggle="modal" href="#staticDelete"
+            >Delete Account</a
+          >
+        </li>
+        <li><a class="dropdown-item" (click)="logoutAcno(0)">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Welcome {{ loggedinUserName }}</h1>
+  <div class="landing d-flex align-items-center">
+    <div class="landingBody col">
+      <h4>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae nihil
+        non sapiente porro perspiciatis dolor molestiae modi obcaecati tempore
+        aut iste, pariatur ut debitis? Commodi quis optio deserunt dolorem quod?
+        Eum, tempora laudantium nostrum porro ipsa adipisci corrupti fugiat rem
+        debitis voluptatem ex sit. Voluptatem minima dicta animi, doloribus
+        cumque nesciunt atque officia cum veritatis possimus dolorum
+        reprehenderit ipsam quas!
+      </h4>
+    </div>
+    <div class="landingImg col">
+      <img src="" alt="landing img" />
+    </div>
+  </div>
+
+  <div class="services text-center mt-5">
+    <div class="serviceTitle">
+      <h1>Our Services</h1>
+    </div>
+    <div class="row mt-5">
+      <div class="col">
+        <div class="serviceImg">
+          <img
+            src="https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjIxMS0yOS1idXNpbmVzc18yLmpwZw.jpg?s=DxKumWUe0cHQ_-2SkeSpuiq_9BQJtJj8REybHn5O0gY"
+            alt="Service 1"
+            class="img-fluid"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample"
+            (click)="getBalance()"
+          />
+        </div>
+      </div>
+      <div class="col">
+        <div class="serviceImg">
+          <img
+            src="https://png.pngtree.com/background/20220725/original/pngtree-money-transfer-wallet-to-smartphone-application-vector-illustration-picture-image_1774701.jpg"
+            alt="Service 2"
+            class="img-fluid"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          />
+        </div>
+      </div>
+      <div class="col">
+        <div class="serviceImg" routerLink="/user/transactions">
+          <img
+            src="https://static.vecteezy.com/system/resources/previews/002/998/662/original/online-bank-statement-vector.jpg"
+            alt="Service 3"
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- off canvas -->
+<div
+  *ngIf="balanceSuccessStatus"
+  class="offcanvas offcanvas-start"
+  tabindex="-1"
+  id="offcanvasExample"
+  aria-labelledby="offcanvasExampleLabel"
+>
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title" id="offcanvasExampleLabel">Balance Enquiry</h3>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      <div class="text-center">
+        <img
+          src="../../assets/pngwing.com.png"
+          alt="Balance image"
+          height="300px"
+        />
+      </div>
+      <h3>Hey {{ loggedinUserName }}, your bank balance is:</h3>
+      <h1 class="text-center fw-bold text-success">{{ balance }}</h1>
+    </div>
+  </div>
+</div>
+
+<!-- bank transfer modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Fund Transfer</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="transferForm">
+          <div class="row g-1">
+            <div class="row mb-3">
+              <input
+                name="acno"
+                formControlName="acno"
+                type="text"
+                id="creditAcno"
+                class="form-control"
+                aria-labelledby="creditAcno"
+                placeholder="Credit Account Number"
+              />
+            </div>
+            <div
+              *ngIf="
+                transferForm.get('acno')?.errors &&
+                transferForm.get('acno')?.touched
+              "
+              class="mb-3 text-danger"
+            >
+              *Invalid Account number
+            </div>
+            <div class="row">
+              <input
+                name="amount"
+                formControlName="amount"
+                type="text"
+                id="creditAmount"
+                class="form-control"
+                aria-labelledby="creditAmount"
+                placeholder="Credit Amount"
+              />
+            </div>
+            <div
+              *ngIf="
+                transferForm.get('amount')?.errors &&
+                transferForm.get('amount')?.touched
+              "
+              class="mb-3 text-danger"
+            >
+              *Invalid Amount
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-dismiss="modal"
+          (click)="fundTransfer()"
+        >
+          Transfer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- delete account Modal -->
+<div
+  class="modal fade"
+  id="staticDelete"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticDeleteLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h3 class="p-3 text-danger text-uppercase">
+          Are you sure you want to delete this account?
+        </h3>
+        <p class="p-3">
+          All your bank data will be deleted if you delete your account
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="deleteAcno()"
+        >
+          Understood
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

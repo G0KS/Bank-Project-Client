@@ -1,0 +1,65 @@
+<nav class="navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/user/dashboard">
+      <i class="fa-solid fa-money-bill-1-wave fa-2xl"></i>
+      Piggy Bank
+    </a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="title">
+    <h1>Mini Statement</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae expedita
+      distinctio laborum tenetur. Amet, porro ab? Quas nulla repellat quia nam
+      blanditiis dolorum aperiam numquam dolores nesciunt perferendis, officia
+      optio.
+    </p>
+  </div>
+  <div class="tableHead row mt-5 text-center">
+    <div class="col-3">
+      <h2>All Transactions</h2>
+    </div>
+    <div class="col-7">
+      <form class="row align-items-center g-2">
+        <div class="col-auto">
+          <label for="searchTerm">Search by:</label>
+        </div>
+        <div class="col-10">
+          <input type="text" id="searchTerm" class="form-control" placeholder="Transaction Type" name="searchBox" [(ngModel)]="search_key"/>
+        </div>
+      </form>
+    </div>
+    <div class="col-2">
+      <button class="btn btn-success" type="button" (click)="generatePdf()">Export</button>
+    </div>
+  </div>
+  <table class="table" id="userDetail">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Transaction Type</th>
+        <th scope="col">From Account</th>
+        <th scope="col">To Account</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transaction of allTransactions | search : search_key : 'transaction_type'; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ transaction.transaction_type }}</td>
+        <td>{{ transaction.debit_account }}</td>
+        <td>{{ transaction.credit_account }}</td>
+        <td>{{ transaction.transaction_amount }}</td>
+      </tr>
+      <tr *ngIf="(allTransactions | search : search_key : 'transaction_type').length ==0 && search_key != ''">
+        <td></td>
+        <td></td>
+        <td class="text-danger text-center fw-bold text-uppercase">
+          <h3>Search key is not found!</h3>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

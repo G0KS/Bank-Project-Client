@@ -1,0 +1,60 @@
+<div class="topBody">
+  <div class="loginImg">
+    <img src="../../assets/Yellow_People_42.jpg" alt="Login page image" />
+  </div>
+  <div class="loginTitle">
+    <h1>Login to Access your piggy bank account</h1>
+  </div>
+</div>
+<div class="middleBody">
+  <form class="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="row">
+      <label for="logAccNo">Account Number</label>
+      <input
+        name="acno"
+        formControlName="acno"
+        type="text"
+        class="form-control"
+        id="logAccNo"
+      />
+    </div>
+    <div
+      *ngIf="loginForm.get('acno')?.errors && loginForm.get('acno')?.touched"
+      class="mb-3 text-danger"
+    >
+      *Invalid Account number format
+    </div>
+    <div class="row mt-3">
+      <label for="logPswd">Password</label>
+      <input
+        name="logPswd"
+        formControlName="pswd"
+        type="password"
+        class="form-control"
+        id="logPswd"
+      />
+    </div>
+    <div
+      *ngIf="loginForm.get('pswd')?.errors && loginForm.get('pswd')?.touched"
+      class="mb-3 text-danger"
+    >
+      *Invalid Password format
+    </div>
+    <div class="loginBtn mt-3 text-center">
+      <button class="btn btn-success d-flex align-items-center" type="submit">
+        Login 
+        <div *ngIf="isLoggedIn" class="spinner-border text-light" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </button>
+    </div>
+    <div class="row mt-3">
+      <p>
+        Don't have a Piggy account? <br />
+        <a routerLink="../register" style="text-decoration: none"
+          >Register Now<i class="fa-regular fa-hand-point-left"></i
+        ></a>
+      </p>
+    </div>
+  </form>
+</div>

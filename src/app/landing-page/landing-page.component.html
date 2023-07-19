@@ -1,0 +1,55 @@
+<app-header></app-header>
+<div class="container" style="margin-top: 50px">
+  <div class="row">
+    <div class="col-6">
+      <div style="width: 100%">
+        <img
+          src="https://img.freepik.com/free-vector/piggy-bank-concept-illustration_114360-5512.jpg?w=740&t=st=1687519493~exp=1687520093~hmac=93b02d9a5b4e6e9058e632a056b22386973ab2d3a1782b66a4e6262376573290"
+          alt=""
+          width="50%"
+        />
+      </div>
+    </div>
+    <div class="col-6 mt-5">
+      <div class="landingTitle">
+        <h1 class="text-uppercase">
+          Welcome to the <br />
+          <span class="text-success fw-bold"
+            >Piggy <span class="text-primary fw-bold">Bank</span></span
+          >
+        </h1>
+      </div>
+      <div class="landingContent">
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem,
+          officiis veniam, iusto culpa ex molestiae eum a sapiente iure
+          inventore est eius fugiat vel quisquam non quo laboriosam quam saepe?
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum soluta
+          molestias minus magni cum itaque repellendus quisquam impedit amet
+          delectus. Nam veniam quaerat officiis accusamus nesciunt earum
+          deleniti excepturi esse? lorem
+        </p>
+        <div class="collapse" id="collapseExample">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
+            provident odit, neque non, quibusdam vel cum dolorum maiores laborum
+            veniam eum facilis, officiis excepturi ut repellat similique impedit
+            voluptatum unde!
+          </p>
+        </div>
+        <button
+          (click)="toggle()"
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseExample"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+        >
+          Read <span *ngIf="toggler">More</span
+          ><span *ngIf="!toggler">Less</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

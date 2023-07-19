@@ -1,0 +1,72 @@
+<div class="topBody">
+  <div class="registerImg">
+    <img src="../../assets/Yellow_People_42.jpg" alt="Login page image" />
+  </div>
+  <div class="registerTitle">
+    <h1>Register now to create your account</h1>
+  </div>
+</div>
+<div class="middleBody">
+  <form [formGroup]="registerForm" class="registerForm" (ngSubmit)="register()">
+    <div class="row">
+      <label for="regName">User Name</label>
+      <input
+        name="regName"
+        formControlName="uName"
+        type="text"
+        class="form-control"
+        id="regName"
+      />
+    </div>
+    <!-- Username validation -->
+    <div
+      *ngIf="registerForm.get('uName')?.touched && registerForm.get('uName')?.errors"
+      class="mb-3 text-danger"
+    >
+      *Invalid Username
+    </div>
+    <div class="row mt-3">
+      <label for="regAccNo">Account Number</label>
+      <input
+        name="regAcNo"
+        formControlName="acno"
+        type="text"
+        class="form-control"
+        id="regAccNo"
+      />
+    </div>
+    <div
+    *ngIf="registerForm.get('acno')?.touched && registerForm.get('acno')?.errors"
+    class="mb-3 text-danger"
+  >
+    *Invalid Username
+  </div>
+    <div class="row mt-3">
+      <label for="regPswd">Password</label>
+      <input
+        name="regPswd"
+        formControlName="pswd"
+        type="password"
+        class="form-control"
+        id="regPswd"
+      />
+    </div>
+    <div
+    *ngIf="registerForm.get('pswd')?.touched && registerForm.get('pswd')?.errors"
+    class="mb-3 text-danger"
+  >
+    *Invalid Username
+  </div>
+    <div class="registerBtn mt-3 text-center">
+      <button type="submit" class="btn btn-success">Register</button>
+    </div>
+    <div class="row mt-3">
+      <p>
+        Already have a Piggy account? <br />
+        <a routerLink="../login" style="text-decoration: none"
+          >Login Now<i class="fa-regular fa-hand-point-left"></i
+        ></a>
+      </p>
+    </div>
+  </form>
+</div>

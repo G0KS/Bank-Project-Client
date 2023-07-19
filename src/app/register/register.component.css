@@ -1,0 +1,60 @@
+.registerImg {
+  width: 100%;
+  height: 150px;
+}
+
+.registerImg img {
+  width: 100%;
+}
+
+.registerTitle {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%);
+  text-align: center;
+  text-transform: uppercase;
+  color: gold;
+}
+
+.registerTitle h1 {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.middleBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -50px;
+}
+
+.registerForm {
+  background-color: rgba(255, 217, 0, 0.6);
+  width: 400px;
+  padding: 35px;
+  border-radius: 22px;
+}
+label {
+  padding: 0;
+  font-size: 32px;
+  color: #7986cb;
+  font-weight: 600;
+}
+p{
+    font-size: 18px;
+}
+
+@media screen and (max-width:500px) {
+    .registerImg{
+      display: none
+    }
+    .registerTitle h1{
+      font-size: 40px;
+    }
+    form{
+      margin-top: 200px;
+      background-color: rgba(255, 217, 0, 0.5);
+    }
+  }

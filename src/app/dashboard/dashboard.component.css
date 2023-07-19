@@ -1,0 +1,9 @@
+.serviceImg{
+    height: 400px;
+    cursor: pointer;
+}
+
+.serviceImg:hover{
+    border: 1px black solid;
+}
+
